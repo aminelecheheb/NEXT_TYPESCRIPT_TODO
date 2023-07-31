@@ -14,7 +14,7 @@ const Edit = () => {
   };
 
   const onCancel = () => {
-    editTodo({ isEditing: false, elementId: 0, newValue: "" });
+    editTodo({ isEditing: false, elementId, newValue });
   };
 
   const onSave = (id: number, value: string) => {

@@ -22,7 +22,7 @@ const reducer = (state: StateType, action: ActionType) => {
     case "EDIT_TODO":
       let tempTodos = state.toDos.map((todo) => {
         if (todo.id === state.edit.elementId) {
-          todo.title = state.edit.newValue;
+          todo.title = action.payload.newValue;
         }
         return todo;
       });
