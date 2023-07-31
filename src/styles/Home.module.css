@@ -28,7 +28,6 @@
 
 .add_todo button {
   flex-basis: 30%;
-
   background-color: var(--primary-color);
   color: var(--font-color-secondary);
   font-weight: 600;
@@ -48,7 +47,7 @@
 
 .todo_btns {
   display: flex;
-  gap: 10px;
+  gap: 5px;
 }
 .delete_icon {
   font-size: 1.6rem;
@@ -102,4 +101,21 @@
 
 .cancel_icon {
   color: rgb(249, 82, 82);
+}
+
+@media screen and (max-width: 390px) {
+  .add_todo input {
+    padding: 10px;
+    font-size: 1rem;
+  }
+  .add_todo button {
+    flex-basis: 50%;
+    flex-grow: 1;
+  }
+  .edit_container input {
+    /* flex-basis: 70%; */
+    flex-grow: 1;
+    padding: 10px;
+    font-size: 1rem;
+  }
 }
