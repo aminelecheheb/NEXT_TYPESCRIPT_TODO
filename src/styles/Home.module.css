@@ -40,6 +40,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  word-break: break-all;
 }
 .todo h3 {
   font-weight: 600;
@@ -116,6 +117,6 @@
     /* flex-basis: 70%; */
     flex-grow: 1;
     padding: 10px;
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
 }
