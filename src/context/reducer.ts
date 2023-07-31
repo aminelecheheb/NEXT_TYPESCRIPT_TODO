@@ -3,7 +3,16 @@ const reducer = (state: StateType, action: ActionType) => {
     case "ADD_TODO":
       return {
         ...state,
-        fullName: action.payload,
+        toDos: [...state.toDos, action.payload],
+      };
+    case "REMOVE_TODO":
+      let newTodos: string[];
+      newTodos = state.toDos.filter((todo) => {
+        return todo !== action.payload;
+      });
+      return {
+        ...state,
+        toDos: newTodos,
       };
 
     default:

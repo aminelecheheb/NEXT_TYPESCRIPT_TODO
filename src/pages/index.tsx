@@ -1,9 +1,18 @@
 import { useGlobalContext } from "@/context/appContext";
-
 import Head from "next/head";
+import { useState } from "react";
 
 export default function Home() {
-  const { state } = useGlobalContext();
+  const { state, addToDo, removeToDo } = useGlobalContext();
+  const [todo, setTodo] = useState("");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTodo(e.target.value);
+  };
+
+  const handleAdd = () => {
+    addToDo(todo);
+  };
 
   const { toDos } = state;
 
@@ -15,7 +24,13 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main></main>
+      <main>
+        <input type="text" onChange={(e) => handleChange(e)} />
+        <button onClick={handleAdd}>Add todo</button>
+        {toDos?.map((todo) => {
+          return <div>{todo}</div>;
+        })}
+      </main>
     </>
   );
 }
