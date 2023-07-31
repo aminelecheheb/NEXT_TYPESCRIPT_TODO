@@ -4,7 +4,12 @@ import reducer from "./reducer";
 
 const initialState = {
   toDos: [],
-  darkMode: false,
+  darkMode: true,
+  edit: {
+    isEditing: false,
+    elementId: 0,
+    newValue: "",
+  },
 };
 
 const AppContext = React.createContext<ContextType>({
@@ -12,6 +17,7 @@ const AppContext = React.createContext<ContextType>({
   addToDo: () => {},
   removeToDo: () => {},
   toggleDarkMode: () => {},
+  editTodo: () => {},
 });
 
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
@@ -29,8 +35,14 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     dispatch({ type: "TOGGLE_DARK_MODE" });
   };
 
+  const editTodo = (edit: EditType) => {
+    dispatch({ type: "EDIT_TODO", payload: edit });
+  };
+
   return (
-    <AppContext.Provider value={{ state, addToDo, removeToDo, toggleDarkMode }}>
+    <AppContext.Provider
+      value={{ state, addToDo, removeToDo, toggleDarkMode, editTodo }}
+    >
       {children}
     </AppContext.Provider>
   );

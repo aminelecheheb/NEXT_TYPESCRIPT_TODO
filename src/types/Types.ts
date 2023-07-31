@@ -3,9 +3,16 @@ type TodoType = {
   title: string;
 };
 
+type EditType = {
+  isEditing: boolean;
+  elementId: number;
+  newValue: string;
+};
+
 type StateType = {
   toDos: TodoType[];
   darkMode: boolean;
+  edit: EditType;
 };
 
 type ActionType = {
@@ -18,4 +25,5 @@ type ContextType = {
   addToDo: (value: TodoType) => void;
   removeToDo: (value: number) => void;
   toggleDarkMode: () => void;
+  editTodo: (value: EditType) => void;
 };

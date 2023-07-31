@@ -19,6 +19,23 @@ const reducer = (state: StateType, action: ActionType) => {
         darkMode: !state.darkMode,
       };
 
+    case "EDIT_TODO":
+      let tempTodos = state.toDos.map((todo) => {
+        if (todo.id === state.edit.elementId) {
+          todo.title = state.edit.newValue;
+        }
+        return todo;
+      });
+      return {
+        ...state,
+        toDos: tempTodos,
+        edit: {
+          isEditing: action.payload.isEditing,
+          elementId: action.payload.elementId,
+          newValue: action.payload.newValue,
+        },
+      };
+
     default:
       return state;
   }

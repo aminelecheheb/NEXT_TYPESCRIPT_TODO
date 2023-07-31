@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
 html {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -37,6 +38,7 @@ body {
   background-color: var(--bg-color-2);
   color: var(--font-color-primary);
   transition-duration: 600ms;
+  font-family: "Montserrat", sans-serif;
 }
 button {
   cursor: pointer;
@@ -45,4 +47,8 @@ button {
 ul,
 li {
   list-style: none;
+}
+
+input {
+  border: none;
 }

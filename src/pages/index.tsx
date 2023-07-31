@@ -3,12 +3,14 @@ import Head from "next/head";
 import { useState, useEffect } from "react";
 import styles from "@/styles/Home.module.css";
 import btnStyles from "@/styles/ToggleBtn.module.css";
-import { AiOutlineDelete } from "react-icons/ai";
+import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
+import Edit from "@/components/Edit";
 
 export default function Home() {
-  const { state, addToDo, removeToDo, toggleDarkMode } = useGlobalContext();
+  const { state, addToDo, removeToDo, toggleDarkMode, editTodo } =
+    useGlobalContext();
   const [todo, setTodo] = useState("");
-  const { toDos, darkMode } = state;
+  const { toDos, darkMode, edit } = state;
 
   useEffect(() => {
     let theme;
@@ -28,6 +30,10 @@ export default function Home() {
   const handleDelete = (id: number) => {
     removeToDo(id);
     // console.log(typeof id);
+  };
+
+  const handleEdit = (id: number, newValue: string) => {
+    editTodo({ isEditing: true, elementId: id, newValue: newValue });
   };
 
   return (
@@ -57,11 +63,20 @@ export default function Home() {
           {toDos?.map((todo) => {
             return (
               <div key={todo.id} className={styles.todo}>
+                {edit.isEditing && edit.elementId == todo.id && <Edit />}
                 <h3>{todo.title}</h3>
-                <AiOutlineDelete
-                  className={styles.delete_icon}
-                  onClick={() => handleDelete(todo.id)}
-                />
+                <div className={styles.todo_btns}>
+                  <AiOutlineEdit
+                    className={styles.edit_icon}
+                    onClick={() => {
+                      handleEdit(todo.id, todo.title);
+                    }}
+                  />
+                  <AiOutlineDelete
+                    className={styles.delete_icon}
+                    onClick={() => handleDelete(todo.id)}
+                  />
+                </div>
               </div>
             );
           })}
