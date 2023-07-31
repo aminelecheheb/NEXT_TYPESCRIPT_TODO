@@ -2,6 +2,8 @@ import { useGlobalContext } from "@/context/appContext";
 import Head from "next/head";
 import { useState, useEffect } from "react";
 import styles from "@/styles/Home.module.css";
+import btnStyles from "@/styles/ToggleBtn.module.css";
+import { AiOutlineDelete } from "react-icons/ai";
 
 export default function Home() {
   const { state, addToDo, removeToDo, toggleDarkMode } = useGlobalContext();
@@ -19,8 +21,13 @@ export default function Home() {
   };
 
   const handleAdd = () => {
-    addToDo(todo);
+    addToDo({ id: Date.now(), title: todo });
     setTodo("");
+  };
+
+  const handleDelete = (id: number) => {
+    removeToDo(id);
+    // console.log(typeof id);
   };
 
   return (
@@ -33,20 +40,30 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <div className={styles.todos_container}>
-          <div className={styles.toogle_container}>
+          <div className={btnStyles.toogle_container}>
             <button
               onClick={toggleDarkMode}
-              className={`${styles.toggle_btn} ${darkMode && styles.active}`}
+              className={`${btnStyles.toggle_btn} ${
+                darkMode && btnStyles.active
+              }`}
             ></button>
           </div>
 
           <div className={styles.add_todo}>
             <input value={todo} type="text" onChange={(e) => handleChange(e)} />
-            <button onClick={handleAdd}>Add todo</button>
+            <button onClick={handleAdd}>Add</button>
           </div>
 
           {toDos?.map((todo) => {
-            return <div>{todo}</div>;
+            return (
+              <div key={todo.id} className={styles.todo}>
+                <h3>{todo.title}</h3>
+                <AiOutlineDelete
+                  className={styles.delete_icon}
+                  onClick={() => handleDelete(todo.id)}
+                />
+              </div>
+            );
           })}
         </div>
       </main>

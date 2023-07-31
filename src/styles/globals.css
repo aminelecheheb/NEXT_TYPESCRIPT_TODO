@@ -16,7 +16,7 @@ html {
 /* light themes */
 
 [data-theme="light"] {
-  --primary-color: #0066d3;
+  --primary-color: #228dff;
   --font-color-primary: rgba(0, 0, 0, 0.9);
   --font-color-secondary: rgba(255, 255, 255, 0.9);
   --bg-color-1: #ededed;
@@ -26,7 +26,7 @@ html {
 /* dark themes */
 
 [data-theme="dark"] {
-  --primary-color: #0066d3;
+  --primary-color: #7db9f9;
   --font-color-primary: rgba(255, 255, 255, 0.9);
   --font-color-secondary: rgba(0, 0, 0, 0.9);
   --bg-color-1: #1d1d20;
@@ -36,6 +36,7 @@ html {
 body {
   background-color: var(--bg-color-2);
   color: var(--font-color-primary);
+  transition-duration: 600ms;
 }
 button {
   cursor: pointer;

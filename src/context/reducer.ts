@@ -6,9 +6,8 @@ const reducer = (state: StateType, action: ActionType) => {
         toDos: [...state.toDos, action.payload],
       };
     case "REMOVE_TODO":
-      let newTodos: string[];
-      newTodos = state.toDos.filter((todo) => {
-        return todo !== action.payload;
+      let newTodos = state.toDos.filter((todo) => {
+        return todo.id !== action.payload;
       });
       return {
         ...state,

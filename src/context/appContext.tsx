@@ -17,12 +17,12 @@ const AppContext = React.createContext<ContextType>({
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const addToDo = (toDo: string) => {
+  const addToDo = (toDo: TodoType) => {
     dispatch({ type: "ADD_TODO", payload: toDo });
   };
 
-  const removeToDo = (toDo: string) => {
-    dispatch({ type: "ADD_TODO", payload: toDo });
+  const removeToDo = (id: number) => {
+    dispatch({ type: "REMOVE_TODO", payload: id });
   };
 
   const toggleDarkMode = () => {

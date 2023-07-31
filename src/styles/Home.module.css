@@ -13,6 +13,7 @@
   display: flex;
   flex-direction: column;
   padding: 1rem 2rem;
+  gap: 1rem;
 }
 
 .add_todo {
@@ -22,57 +23,28 @@
 .add_todo input {
   flex-grow: 1;
   padding: 10px 1rem;
+  font-size: 1.1rem;
 }
 
 .add_todo button {
   width: 20%;
+  background-color: var(--primary-color);
+  color: var(--font-color-secondary);
+  font-weight: 600;
 }
 
-.toogle_container {
-  position: absolute;
-  top: -1rem;
-  transform: translateY(-100%);
-  left: 0;
-}
-.toggle_btn {
-  position: absolute;
-  top: 0;
-  width: 4rem;
-  height: 2rem;
+.todo {
+  background-color: var(--bg-color-2);
+  padding: 1rem;
   position: relative;
-  display: block;
-  background: #ebebeb;
-  border-radius: 200px;
-  box-shadow: inset 0px 5px 15px rgba(0, 0, 0, 0.4),
-    inset 0px -5px 15px rgba(255, 255, 255, 0.4);
-  cursor: pointer;
 }
 
-.toggle_btn:after {
-  content: "";
-  width: 26px;
-  height: 26px;
+.delete_icon {
   position: absolute;
-  top: 3px;
-  left: 5px;
-  background: linear-gradient(180deg, #ffcc89, #d8860b);
-  border-radius: 100%;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
-}
-
-.toggle_btn.active {
-  background: #242424;
-}
-.toggle_btn.active:after {
-  left: 59px;
-  transform: translateX(-100%);
-  background: linear-gradient(180deg, #777, #3a3a3a);
-}
-.toggle_btn,
-.toggle_btn:after {
-  transition: 0.3s;
-}
-
-.toggle_btn:active:after {
-  width: 40px;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  font-size: 1.6rem;
+  color: rgb(249, 82, 82);
+  cursor: pointer;
 }

@@ -1,5 +1,10 @@
+type TodoType = {
+  id: number;
+  title: string;
+};
+
 type StateType = {
-  toDos: string[];
+  toDos: TodoType[];
   darkMode: boolean;
 };
 
@@ -10,7 +15,7 @@ type ActionType = {
 
 type ContextType = {
   state: StateType;
-  addToDo: (value: string) => void;
-  removeToDo: (value: string) => void;
+  addToDo: (value: TodoType) => void;
+  removeToDo: (value: number) => void;
   toggleDarkMode: () => void;
 };
