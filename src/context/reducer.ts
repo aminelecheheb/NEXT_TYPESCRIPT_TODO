@@ -14,6 +14,11 @@ const reducer = (state: StateType, action: ActionType) => {
         ...state,
         toDos: newTodos,
       };
+    case "TOGGLE_DARK_MODE":
+      return {
+        ...state,
+        darkMode: !state.darkMode,
+      };
 
     default:
       return state;

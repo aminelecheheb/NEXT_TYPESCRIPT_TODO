@@ -1,0 +1,47 @@
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+/* light themes */
+
+[data-theme="light"] {
+  --primary-color: #0066d3;
+  --font-color-primary: rgba(0, 0, 0, 0.9);
+  --font-color-secondary: rgba(255, 255, 255, 0.9);
+  --bg-color-1: #ededed;
+  --bg-color-2: #ffffff;
+}
+
+/* dark themes */
+
+[data-theme="dark"] {
+  --primary-color: #0066d3;
+  --font-color-primary: rgba(255, 255, 255, 0.9);
+  --font-color-secondary: rgba(0, 0, 0, 0.9);
+  --bg-color-1: #1d1d20;
+  --bg-color-2: #000000;
+}
+
+body {
+  background-color: var(--bg-color-2);
+  color: var(--font-color-primary);
+}
+button {
+  cursor: pointer;
+  border: none;
+}
+ul,
+li {
+  list-style: none;
+}

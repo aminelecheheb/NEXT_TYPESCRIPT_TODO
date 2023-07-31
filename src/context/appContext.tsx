@@ -4,12 +4,14 @@ import reducer from "./reducer";
 
 const initialState = {
   toDos: [],
+  darkMode: false,
 };
 
 const AppContext = React.createContext<ContextType>({
   state: initialState,
   addToDo: () => {},
   removeToDo: () => {},
+  toggleDarkMode: () => {},
 });
 
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
@@ -23,8 +25,12 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     dispatch({ type: "ADD_TODO", payload: toDo });
   };
 
+  const toggleDarkMode = () => {
+    dispatch({ type: "TOGGLE_DARK_MODE" });
+  };
+
   return (
-    <AppContext.Provider value={{ state, addToDo, removeToDo }}>
+    <AppContext.Provider value={{ state, addToDo, removeToDo, toggleDarkMode }}>
       {children}
     </AppContext.Provider>
   );

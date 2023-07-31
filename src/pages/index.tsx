@@ -1,10 +1,18 @@
 import { useGlobalContext } from "@/context/appContext";
 import Head from "next/head";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import styles from "@/styles/Home.module.css";
 
 export default function Home() {
-  const { state, addToDo, removeToDo } = useGlobalContext();
+  const { state, addToDo, removeToDo, toggleDarkMode } = useGlobalContext();
   const [todo, setTodo] = useState("");
+  const { toDos, darkMode } = state;
+
+  useEffect(() => {
+    let theme;
+    darkMode ? (theme = "dark") : (theme = "light");
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [darkMode]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTodo(e.target.value);
@@ -12,9 +20,8 @@ export default function Home() {
 
   const handleAdd = () => {
     addToDo(todo);
+    setTodo("");
   };
-
-  const { toDos } = state;
 
   return (
     <>
@@ -24,12 +31,24 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <input type="text" onChange={(e) => handleChange(e)} />
-        <button onClick={handleAdd}>Add todo</button>
-        {toDos?.map((todo) => {
-          return <div>{todo}</div>;
-        })}
+      <main className={styles.main}>
+        <div className={styles.todos_container}>
+          <div className={styles.toogle_container}>
+            <button
+              onClick={toggleDarkMode}
+              className={`${styles.toggle_btn} ${darkMode && styles.active}`}
+            ></button>
+          </div>
+
+          <div className={styles.add_todo}>
+            <input value={todo} type="text" onChange={(e) => handleChange(e)} />
+            <button onClick={handleAdd}>Add todo</button>
+          </div>
+
+          {toDos?.map((todo) => {
+            return <div>{todo}</div>;
+          })}
+        </div>
       </main>
     </>
   );
