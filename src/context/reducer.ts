@@ -35,6 +35,22 @@ const reducer = (state: StateType, action: ActionType) => {
           newValue: action.payload.newValue,
         },
       };
+    case "SHOW_ALERT":
+      return {
+        ...state,
+        alert: {
+          show: true,
+          msg: action.payload,
+        },
+      };
+    case "HIDE_ALERT":
+      return {
+        ...state,
+        alert: {
+          show: false,
+          msg: "",
+        },
+      };
 
     default:
       return state;

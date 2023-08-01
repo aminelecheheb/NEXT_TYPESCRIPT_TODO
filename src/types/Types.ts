@@ -9,10 +9,16 @@ type EditType = {
   newValue: string;
 };
 
+type AlertType = {
+  show: boolean;
+  msg: string;
+};
+
 type StateType = {
   toDos: TodoType[];
   darkMode: boolean;
   edit: EditType;
+  alert: AlertType;
 };
 
 type ActionType = {
@@ -26,4 +32,6 @@ type ContextType = {
   removeToDo: (value: number) => void;
   toggleDarkMode: () => void;
   editTodo: (value: EditType) => void;
+  showAlert: (msg: string) => void;
+  hideAlert: () => void;
 };

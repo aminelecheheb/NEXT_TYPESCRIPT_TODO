@@ -10,6 +10,10 @@ const initialState = {
     elementId: 0,
     newValue: "",
   },
+  alert: {
+    show: false,
+    msg: "",
+  },
 };
 
 const AppContext = React.createContext<ContextType>({
@@ -18,6 +22,8 @@ const AppContext = React.createContext<ContextType>({
   removeToDo: () => {},
   toggleDarkMode: () => {},
   editTodo: () => {},
+  showAlert: () => {},
+  hideAlert: () => {},
 });
 
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
@@ -39,9 +45,25 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     dispatch({ type: "EDIT_TODO", payload: edit });
   };
 
+  const showAlert = (msg: string) => {
+    dispatch({ type: "SHOW_ALERT", payload: msg });
+  };
+
+  const hideAlert = () => {
+    dispatch({ type: "HIDE_ALERT" });
+  };
+
   return (
     <AppContext.Provider
-      value={{ state, addToDo, removeToDo, toggleDarkMode, editTodo }}
+      value={{
+        state,
+        addToDo,
+        removeToDo,
+        toggleDarkMode,
+        editTodo,
+        showAlert,
+        hideAlert,
+      }}
     >
       {children}
     </AppContext.Provider>

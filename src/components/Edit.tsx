@@ -5,7 +5,7 @@ import { AiOutlineCheckCircle } from "react-icons/ai";
 import { MdOutlineCancel } from "react-icons/md";
 
 const Edit = () => {
-  const { state, editTodo } = useGlobalContext();
+  const { state, editTodo, showAlert } = useGlobalContext();
   const { newValue, elementId } = state.edit;
   const [editValue, setEditValue] = useState(newValue);
 
@@ -18,7 +18,10 @@ const Edit = () => {
   };
 
   const onSave = (id: number, value: string) => {
-    editTodo({ isEditing: false, elementId: id, newValue: value });
+    value.length > 2
+      ? editTodo({ isEditing: false, elementId: id, newValue: value })
+      : showAlert("min length is 3");
+
     // console.log(value);
   };
 

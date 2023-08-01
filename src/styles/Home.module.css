@@ -104,6 +104,10 @@
   color: rgb(249, 82, 82);
 }
 
+.alert {
+  color: rgb(249, 82, 82);
+}
+
 @media screen and (max-width: 390px) {
   .add_todo input {
     padding: 10px;

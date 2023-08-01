@@ -7,10 +7,17 @@ import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import Edit from "@/components/Edit";
 
 export default function Home() {
-  const { state, addToDo, removeToDo, toggleDarkMode, editTodo } =
-    useGlobalContext();
+  const {
+    state,
+    addToDo,
+    removeToDo,
+    toggleDarkMode,
+    editTodo,
+    showAlert,
+    hideAlert,
+  } = useGlobalContext();
   const [todo, setTodo] = useState("");
-  const { toDos, darkMode, edit } = state;
+  const { toDos, darkMode, edit, alert } = state;
 
   useEffect(() => {
     let theme;
@@ -18,12 +25,20 @@ export default function Home() {
     document.documentElement.setAttribute("data-theme", theme);
   }, [darkMode]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      hideAlert();
+    }, 3000);
+  }, [alert.show]);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTodo(e.target.value);
   };
 
   const handleAdd = () => {
-    addToDo({ id: Date.now(), title: todo });
+    todo.length > 2
+      ? addToDo({ id: Date.now(), title: todo })
+      : showAlert("min length is 3");
     setTodo("");
   };
 
@@ -59,6 +74,7 @@ export default function Home() {
             <input value={todo} type="text" onChange={(e) => handleChange(e)} />
             <button onClick={handleAdd}>Add</button>
           </div>
+          {alert.show && <p className={styles.alert}>{alert.msg}</p>}
 
           {toDos?.map((todo) => {
             return (
